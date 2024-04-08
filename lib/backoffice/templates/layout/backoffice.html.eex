@@ -130,17 +130,7 @@
             </div>
             <div class="flex-shrink-0 flex border-t border-gray-200 p-4">
               <div class="flex items-center">
-                <div class="ml-3">
-                  <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">
-                    Made with love by
-                    <a class="hover:text-gray-500" href="https://twitter.com/@edisonywh">@edisonywh</a>
-                  </p>
-                  <a
-                    href="https://github.com/edisonywh/backoffice"
-                    class="hover:text-gray-500 text-xs mt-2 font-medium text-gray-500 group-hover:text-gray-700"
-                    >View source</a
-                  >
-                </div>
+                <%= render_footer() %>
               </div>
             </div>
           </div>

@@ -5,7 +5,6 @@ defmodule Backoffice.LayoutView do
     root: "lib/backoffice/templates",
     namespace: Backoffice
 
-
   def live_socket_path(conn) do
     [Enum.map(conn.script_name, &["/" | &1]) | conn.private.live_socket_path]
   end
@@ -16,6 +15,28 @@ defmodule Backoffice.LayoutView do
     case layout && function_exported?(layout, :stylesheets, 0) do
       true -> layout.stylesheets()
       _ -> []
+    end
+  end
+
+  def render_footer do
+    layout = Application.get_env(:backoffice, :layout)
+
+    case layout && function_exported?(layout, :footer, 0) do
+      true ->
+        layout.footer()
+
+      _ ->
+        [
+          {:safe, ~s(
+            <div class="ml-3">
+                <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">
+                    Made with love by
+                    <a class="hover:text-gray-500" href="https://twitter.com/@edisonywh">@edisonywh</a>
+                </p>
+                <a href="https://github.com/edisonywh/backoffice" class="hover:text-gray-500 text-xs mt-2 font-medium text-gray-500 group-hover:text-gray-700">View source</a>
+            </div>
+          )}
+        ]
     end
   end
 
@@ -62,12 +83,8 @@ defmodule Backoffice.LayoutView do
           ]
 
         false ->
-          link to: link.link,
-               class: ["ml-#{indent * 2} " | active_link(conn.request_path, link.link)] do
-            [
-              {:safe, render_icon(link[:icon])},
-              link.label
-            ]
+          link to: link.link, class: "ml-#{indent * 2} #{active_link(conn.request_path, link.link)}" do
+            [{:safe, render_icon(link[:icon])}, link.label]
           end
       end
     end
