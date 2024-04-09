@@ -16,7 +16,7 @@
     <%= for script <- render_scripts() do %>
       <script type="text/javascript" src="<%= script %>"></script>
     <% end %>
-    <title>Backoffice</title>
+    <title><%= render_title() %></title>
   </head>
   <body class="bg-white">
     <!-- This example requires Tailwind CSS v2.0+ -->

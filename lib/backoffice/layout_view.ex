@@ -18,6 +18,16 @@ defmodule Backoffice.LayoutView do
     end
   end
 
+  def render_title do
+    layout = Application.get_env(:backoffice, :layout)
+
+    case layout && function_exported?(layout, :title, 0) do
+      true ->
+        layout.title()
+      _ -> "Backoffice"
+    end
+  end
+
   def render_footer do
     layout = Application.get_env(:backoffice, :layout)
 
