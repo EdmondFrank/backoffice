@@ -13,9 +13,9 @@
     <%= csrf_meta_tag() %>
 
     <%= for script <- render_scripts() do %>
-      <script type="text/javascript" src="<%= script %>"></script>
+      <script defer phx-track-static type="text/javascript" src="<%= script %>"></script>
     <% end %>
-    <script src=<%= static_path() <> "/js/app.js" %> ></script>
+    <script defer phx-track-static src=<%= static_path() <> "/js/app.js" %>></script>
     <title><%= render_title() %></title>
   </head>
   <body class="bg-white">
