@@ -60,13 +60,13 @@ defmodule Backoffice.Resources do
 
   defp has_path?(_, _, _), do: true
 
-  def get_path(module, socket, action, resource_or_params) do
+  def get_path(module, socket, _action, resource_or_params) do
     apply(
       Module.concat(socket.router, Helpers),
       :live_path,
       [
         socket,
-        build_module(module, action),
+        module,
         resource_or_params
       ]
     )
